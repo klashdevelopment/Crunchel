@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example</title>
+    <script src="../crunchel.js"></script>
+    <link rel="stylesheet" href="../crunchel.css">
+</head>
+<body>
+    <div class="crunchel-container" style="background-color: skyblue;">
+        <crunchel id="player" type="player" class="smooth-movement example-player"></crunchel>
+    </div>
+    <script>
+        var HTMLPlayer = document.querySelector('#player');
+        var player = crunch(HTMLPlayer);
+        player.enableBasicMovement({up: 'w', left: 'a', down: 's', right: 'd'}, {
+            speed: 10, // Optional, defaults to 10
+        });
+    </script>
+</body>
+</html>
