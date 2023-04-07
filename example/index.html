@@ -7,16 +7,32 @@
     <title>Example</title>
     <script src="../crunchel.js"></script>
     <link rel="stylesheet" href="../crunchel.css">
+    <style>
+        html, body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
 </head>
 <body>
+    <h1>Crunchel Example</h1>
     <div class="crunchel-container" style="background-color: skyblue;">
         <crunchel id="player" type="player" class="smooth-movement example-player"></crunchel>
+        <crunchel id="coin" value="20" type="collectable point" class="example-coin" style="top: 120px; left: 120px;"></crunchel>
+        <crunchel class="wall_block example-block" style="top: 70px; left: 120px;"></crunchel>
+        <crunchel class="wall_block example-block" style="top: 170px; left: 120px;"></crunchel>
     </div>
+    <h3>You have <a id=coins>0</a> coins!</h3>
     <script>
         var HTMLPlayer = document.querySelector('#player');
+        var HTMLCoin = document.querySelector('#coin');
+
         var player = crunch(HTMLPlayer);
         player.enableBasicMovement({up: 'w', left: 'a', down: 's', right: 'd'}, {
-            speed: 10, // Optional, defaults to 10
+            //speed: 10, // Optional, defaults to 5
+        });
+        player.enableCoinCollect(HTMLCoin, true); // true = destroy on collect
+        player.addCollectPointListener((point) => {
+            document.querySelector('#coins').textContent = point.player.data.collectedPoints;
         });
     </script>
 </body>
